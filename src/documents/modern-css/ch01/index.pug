@@ -1,0 +1,26 @@
+extends /_layouts/single
+
+
+append vars
+  -
+    var pageInfo = {
+      path: '/modern-css/ch01/',
+      title: 'modern css chapter 1 | static-pack',
+      description: 'Just testing some things',
+      pageClass: 'modern-css-ch01'
+    }
+
+block main
+  article.container
+    h1
+      span modern css chapter 1
+    p
+      | #{pageInfo.description}
+    .example-01
+      .box this is a box
+    .ex-01-vertical-align
+      .container.mx-auto.px-4 vertically centering using just positioning + transform:
+      .parent
+        .child
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut tellus elementum sagittis vitae et leo duis ut. Diam quis enim lobortis scelerisque.
+         
