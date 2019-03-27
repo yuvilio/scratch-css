@@ -1,10 +1,4 @@
 // using stylus ftw
-.modern-css-ch01
-  .box
-    min-width 5rem
-    max-width 5rem
-    border 2px solid tomato
-    margin 10px
 
 .ex-01-vertical-align
   .parent // suppose you had some box with a certain height
@@ -18,3 +12,30 @@
     position relative
     top 50%
     transform translateY(-50%)
+    // if the text looks blurry add a perspective transform
+    // transform perspective(1px) translateY(-50%)
+.ex-02-speech-bubbles-scale
+  .box
+    width 10rem
+    background-color #e0e0e0
+    padding 1rem
+    margin 1rem
+    border-radius 1rem
+    position relative
+    &::before {
+      // start with making a square (same width and height)
+      content ''
+      width 1rem
+      height 1rem
+      background-color #e0e0e0
+      overflow hidden
+      position absolute
+      right -0.5rem //position just outside of edge at half the width of the square sticking out
+
+      // vertically center
+      top 50%
+      margin-top -.5rem
+
+      transform rotate(45deg) // rotating the square gives us the triangle
+      // the rest intersects with the bubble
+    }
