@@ -22,7 +22,7 @@
     margin 1rem
     border-radius 1rem
     position relative
-    &::before {
+    &::before
       // start with making a square (same width and height)
       content ''
       width 1rem
@@ -38,4 +38,68 @@
 
       transform rotate(45deg) // rotating the square gives us the triangle
       // the rest intersects with the bubble
-    }
+
+.ex-03-loader
+
+
+
+  .loader
+
+    // a circle with two colors for each half
+    border-radius 50%
+    width 50px
+    height 50px
+    background linear-gradient(to bottom, #cb60b3 0%, #cb60b3 0%, #c146a1 50%, #a80077 51%, #db36a4 100%)
+    margin-top 50px // a little room for the jumping
+
+    // defining the 'jump' animation moving up and down the y axis
+    @keyframes jump
+      from
+        transform translateY(0px)
+      to
+        transform translateY(-50px)
+
+    // use it
+    animation: jump 1.5s ease-out infinite alternate
+
+  .loader-02
+
+    // a circle with two colors for each half
+    border-radius 50%
+    width 50px
+    height 50px
+    background linear-gradient(to bottom, #cb60b3 0%, #cb60b3 0%, #c146a1 50%, #a80077 51%, #db36a4 100%)
+    margin-top 50px // a little room for the jumping
+
+    // defining the 'jump-rotate-scale' animation moving up and down the y axis,
+    // rotating, and expanding/contracting
+    @keyframes jump-rotate-scale
+      from
+        transform translateY(0px) rotate(0deg) scale(1,1)
+      to
+        transform translateY(-50px) rotate(360deg) scale(0.8, 0.8)
+
+    // use it
+    animation: jump-rotate-scale 1.5s ease-out infinite alternate
+  .loader-svg
+    .spinner-dot
+      stroke #000
+      stroke-width 1
+      fill #000
+    .spinner-border
+      fill transparent
+      stroke-width 2
+      width 100%
+      height 100%
+    .path
+      stroke-dasharray 170
+      stroke-dashoffset 20
+    .spinner
+      // rotate the circle, creates effect of the trace
+      @keyframes rotate-spinner
+        to
+          transform rotate(360deg)
+      margin 10px
+      width 180px
+      height 180px
+      animation rotate-spinner 2s linear infinite
