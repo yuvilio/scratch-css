@@ -3,11 +3,14 @@ const globule = require('globule')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const autoprefixer = require('autoprefixer')
+// const autoprefixer = require('autoprefixer')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const postcssReporter = require('postcss-reporter');
+const postcssExtend = require('postcss-extend');
+const postcssImport = require('postcss-import');
 
 const src = './src'
 const dist = './dist'
@@ -78,14 +81,32 @@ const app = {
             loader: 'postcss-loader',
             options: {
               plugins: [
-                autoprefixer({
-                  grid: true,
-                  flexbox: true,
-                  browsers: [
-                    'last 2 versions',
-                    'ie >= 11'
-                  ]
-                })
+                postcssReporter(),
+                postcssImport(),
+                require('postcss-preset-env')({
+                  features: {
+                    'custom-properties': {
+                      preserve: true, // keep the var() in the resulting css (rather than )
+                    },
+                    // 'custom-media-queries': {
+                    //   preserve: false,
+                    // },
+                    'custom-media': {
+                      preserve: false
+                    },
+                    'nesting-rules': true
+                  }
+                }),
+                postcssExtend(),
+
+                // autoprefixer({
+                //   grid: true,
+                //   flexbox: true,
+                //   browsers: [
+                //     'last 2 versions',
+                //     'ie >= 11'
+                //   ]
+                // })
               ]
             }
           },
