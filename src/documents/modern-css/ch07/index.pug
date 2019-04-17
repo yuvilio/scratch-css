@@ -1,0 +1,23 @@
+extends /_layouts/single
+
+
+append vars
+  -
+    var pageInfo = {
+      path: '/modern-css/ch07/',
+      title: 'modern css chapter 7 | custom-properties',
+      description: 'scroll-snap',
+      pageClass: 'modern-css-ch07'
+    }
+
+block main
+  article.container
+    h1
+      span modern css chapter 7
+    p
+      | #{pageInfo.description}
+      .ex-01-root this is some  box. it's colored using a variable we defined for root (global)
+      .ex-02-var this is another box, it's colored using a variable we defined locally to that dom
+        
+      include:markdown-it md/markdown-test.md
+            
